@@ -12,7 +12,7 @@ $VERSION = '0.0.1';
     contact     => 'perltricks.com@gmail.com',
     name        => 'alert',
     description => 'Creates Gnome3 alert and writes to a file when your nick is mentioned or you are private messaged',
-    url         => 'https://github.com/sillymoose/aler',
+    url         => 'https://github.com/sillymoose/irssi/blob/master/alert.pl',
     license     => 'GNU General Public License',
     changed     => '$Date: 2014-05-31 20:44:00 -0400 (Sat, 31 May 2014) $'
 );
