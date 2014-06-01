@@ -10,34 +10,32 @@ $VERSION = '0.0.1';
 %IRSSI = (
     authors     => 'David Farrell',
     contact     => 'perltricks.com@gmail.com',
-    name        => 'alert',
-    description => 'Creates Gnome3 alert and writes to a file when your nick is mentioned or you are private messaged',
-    url         => 'https://github.com/sillymoose/irssi/blob/master/alert.pl',
+    name        => 'gnotify',
+    description => 'Creates Gnome3 popup alert when your nick is mentioned or you are private messaged',
+    url         => 'https://github.com/sillymoose/irssi/blob/master/gnotify.pl',
     license     => 'GNU General Public License',
     changed     => '$Date: 2014-05-31 20:44:00 -0400 (Sat, 31 May 2014) $'
 );
 
 =head1 DESCRIPTION
 
-This is an irssi script that creates a Gnome3 alert popup in your window and writes to a file when your nick is mentioned or you are private messaged.
-
-=cut
+This is an irssi script that creates a Gnome3 alert popup in your window when your nick is mentioned or you are private messaged.
 
 =head1 INSTALLATION
 
 Place this file in your user irrsi directory, e.g:
 
-    ~/.irssi/script/alert.pl
+    ~/.irssi/script/gnotify.pl
 
 Within irrsi you can load the script:
 
-    /script load alert.pl
+    /script load gnotify.pl
 
 You can also create a simlink to autoload the script when irssi starts:
 
     $ mkdir ~/.irssi/script/autorun
     $ cd ~/.irssi/script/autorun
-    $ ln -s ../alert.pl
+    $ ln -s ../gnotify.pl
 
 =cut
 
@@ -45,13 +43,12 @@ You can also create a simlink to autoload the script when irssi starts:
 
 =head2 priv_msg
 
-Called when you get a private message. Calls filewrite() and alert()
+Called when you get a private message. Calls alert()
 
 =cut
 
 sub priv_msg {
     my ($server,$msg,$nick,$address,$target) = @_;
-    filewrite($nick." " .$msg );
     alert($nick." " .$msg );
 }
 
@@ -66,17 +63,6 @@ sub hilight {
     if ($dest->{level} & MSGLEVEL_HILIGHT) {
     alert($dest->{target}. " " .$stripped );
     }
-}
-
-=head2 filewrite
-
-Writes to the file - change the path if you need to.
-
-=cut
-
-sub filewrite {
-    open(my $file, '>>', "$ENV{HOME}/.irssi/alert.log");
-    say $file shift;
 }
 
 =head2 alert
@@ -100,7 +86,6 @@ Irssi::signal_add_last("print text", "hilight");
 Based on fnotify.pl by Thorsten Leemhuis
 
 =cut
-
 
 =head1 WARNING
 
