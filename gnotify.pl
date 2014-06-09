@@ -91,14 +91,7 @@ Based on fnotify.pl by Thorsten Leemhuis
 
 Gtk3::Notify v0.01 test file *may* not work on install. I've filed a patch with the author, but in meantime if you need to install Gtk3::Notify:
 
-    $ cpan -g Gtk3::Notify
-    $ tar xvf Gtk3-Notify-0.01.tar.gzf
-    $ cd Gtk3-Notify-0.01
-    $ rm t/*
-    $ perl Makefile.PL
-    $ make
-    $ make test
-    $ make install
+    $ cpan -fi Gtk3::Notify
 
 Voila!
 
